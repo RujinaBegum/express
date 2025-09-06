@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch API Test</title>
+</head>
+<body>
+  <h1>Fetch API Example</h1>
+  <button id="btn1">Get API Data</button>
+  <button id="btn2">Get Users</button>
+  <pre id="result"></pre>
+
+  <script>
+  document.getElementById("btn1").addEventListener("click", async () => {
+    try {
+      const res = await fetch("/api/data");
+      const data = await res.json();
+      document.getElementById("result").innerText =
+        "API Data:\n" + JSON.stringify(data, null, 2);
+    } catch (err) {
+      console.error(err);
+      document.getElementById("result").innerText = "Failed to fetch /api/data";
+    }
+  });
+
+  document.getElementById("btn2").addEventListener("click", async () => {
+    try {
+      const res = await fetch("/getusers");
+      const users = await res.json();
+      document.getElementById("result").innerText =
+        "Users:\n" + JSON.stringify(users, null, 2);
+    } catch (err) {
+      console.error(err);
+      document.getElementById("result").innerText = "Failed to fetch /getusers";
+    }
+  });
+  </script>
+</body>
+</html>
